@@ -1,5 +1,9 @@
 package com.atguigu.cloud.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -8,8 +12,11 @@ import java.math.BigDecimal;
  *
  * @author nhh
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class PayDTO implements Serializable {
-    private static final long serialVersionUID = -7012338017994539589L;
+    private static final long serialVersionUID = 1260729604203777337L;
     private Integer id;
     // 支付流水号
     private String payNo;

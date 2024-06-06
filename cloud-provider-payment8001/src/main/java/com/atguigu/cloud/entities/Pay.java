@@ -1,5 +1,7 @@
 package com.atguigu.cloud.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import java.util.Date;
  * 表注释：支付交易表
 */
 @Table(name = "t_pay")
+@Schema(title = "支付交易表Entity")
 public class Pay {
     @Id
     @GeneratedValue(generator = "JDBC")
@@ -21,23 +24,27 @@ public class Pay {
      * 支付流水号
      */
     @Column(name = "pay_no")
+    @Schema(title = "支付流水号")
     private String payNo;
 
     /**
      * 订单流水号
      */
     @Column(name = "order_no")
+    @Schema(title = "订单流水号")
     private String orderNo;
 
     /**
      * 用户账号ID
      */
     @Column(name = "user_id")
+    @Schema(title = "用户账号ID")
     private Integer userId;
 
     /**
      * 交易金额
      */
+    @Schema(title = "交易金额")
     private BigDecimal amount;
 
     /**
@@ -49,12 +56,14 @@ public class Pay {
      * 创建时间
      */
     @Column(name = "create_time")
+    @Schema(title = "创建时间")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @Column(name = "update_time")
+    @Schema(title = "更新时间")
     private Date updateTime;
 
     /**
