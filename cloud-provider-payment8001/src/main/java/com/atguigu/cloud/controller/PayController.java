@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +27,14 @@ public class PayController {
     @Resource
     private PayService payService;
 
+    @Value("${server.port}")
+    private String port;
+
     @PostMapping("/add")
     @Operation(summary = "新增", description = "新增支付流水方法,json串做参数")
-    public ResultData<String> addPay(@RequestBody Pay pay) {
+    public ResultData<String> addPay(@RequestBody PayDTO payDTO) {
+        Pay pay = new Pay();
+        BeanUtils.copyProperties(payDTO, pay);
         int add = payService.add(pay);
         return ResultData.success("成功插入记录，返回值：" + add);
     }
@@ -52,7 +58,9 @@ public class PayController {
     @GetMapping("/get/{id}")
     @Operation(summary = "按照ID查流水", description = "查询支付流水方法")
     public ResultData<Pay> getById(@PathVariable("id") Integer id) {
-        if (id == -4) throw new RuntimeException("id不能为负数");
+        if (id == -4) {
+            throw new RuntimeException("id不能为负数");
+        }
         Pay pay = payService.getById(id);
         return ResultData.success(pay);
     }
@@ -61,5 +69,10 @@ public class PayController {
     @Operation(summary = "查询", description = "查询所有支付流水方法")
     public List<Pay> getAll() {
         return payService.getAll();
+    }
+
+    @GetMapping("/get/info")
+    public String getInfo(@Value("${atguigu.info}") String info) {
+        return info;
     }
 }

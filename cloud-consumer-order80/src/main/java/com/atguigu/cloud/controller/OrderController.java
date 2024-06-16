@@ -5,7 +5,6 @@ import com.atguigu.cloud.resp.ResultData;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.yaml.snakeyaml.events.Event;
 
 /**
  * OrderController
@@ -22,7 +21,7 @@ public class OrderController {
     private RestTemplate restTemplate;
 
     @PostMapping("/pay/add")
-    public ResultData addOrder(PayDTO payDTO) {
+    public ResultData addOrder(@RequestBody PayDTO payDTO) {
         return restTemplate.postForObject(PaymentSrv_URL + "/pay/add", payDTO, ResultData.class);
     }
 
