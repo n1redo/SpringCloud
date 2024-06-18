@@ -73,6 +73,6 @@ public class PayController {
 
     @GetMapping("/get/info")
     public String getInfo(@Value("${atguigu.info}") String info) {
-        return info;
+        return info+" port:"+port;
     }
 }
