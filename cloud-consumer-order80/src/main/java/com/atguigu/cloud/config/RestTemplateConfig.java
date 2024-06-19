@@ -13,6 +13,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * RestTemplateConfig
+ *
  * @author nhh
  */
 @Configuration
